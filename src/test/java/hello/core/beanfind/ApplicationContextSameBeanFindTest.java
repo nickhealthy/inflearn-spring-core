@@ -15,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 
+
+/**
+ * ac.getBeansOfType() 을 사용하면 해당 타입의 모든 빈을 조회할 수 있음 
+ */
 public class ApplicationContextSameBeanFindTest {
 
 	AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SameBeanConfig.class);
