@@ -2,6 +2,7 @@ package hello.core.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
