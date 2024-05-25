@@ -11,12 +11,33 @@ import hello.core.member.MemberRepository;
 @Component
 public class OrderServiceImpl implements OrderService {
 
-	private final MemberRepository memberRepository;
-	private final DiscountPolicy discountPolicy;
+	private MemberRepository memberRepository;
+	private DiscountPolicy discountPolicy;
 
+	/* [수정자 주입] 
+	 * - 선택, 변경 가능성이 있는 의존관계에 사용
+	 * - 생성자 주입 이후 Setter 주입이 발동하게 된다.
+	 * */
+	@Autowired
+	public void setMemberRepository(MemberRepository memberRepository) {
+		System.out.println("MemberRepository" + memberRepository);
+		this.memberRepository = memberRepository;
+	}
+
+	@Autowired
+	public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+		System.out.println("DiscountPolicy" + discountPolicy);
+		this.discountPolicy = discountPolicy;
+	}
+
+	/* [생성자 주입]
+	 * - 생성자 호출 시점에 딱 1번만 호출되는 것을 보장
+	 * - 주로 불변, 필수 의존관계에 사용 
+	 * */
 	@Autowired
 	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 		super();
+		System.out.println("call constructor");
 		this.memberRepository = memberRepository;
 		this.discountPolicy = discountPolicy;
 	}
