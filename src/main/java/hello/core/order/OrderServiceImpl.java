@@ -2,13 +2,14 @@ package hello.core.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 
 @Component
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
 	private MemberRepository memberRepository;
@@ -20,13 +21,13 @@ public class OrderServiceImpl implements OrderService {
 	 * */
 	@Autowired
 	public void setMemberRepository(MemberRepository memberRepository) {
-		System.out.println("MemberRepository" + memberRepository);
+		System.out.println("MemberRepository = " + memberRepository);
 		this.memberRepository = memberRepository;
 	}
 
 	@Autowired
 	public void setDiscountPolicy(DiscountPolicy discountPolicy) {
-		System.out.println("DiscountPolicy" + discountPolicy);
+		System.out.println("DiscountPolicy = " + discountPolicy);
 		this.discountPolicy = discountPolicy;
 	}
 
@@ -34,13 +35,11 @@ public class OrderServiceImpl implements OrderService {
 	 * - 생성자 호출 시점에 딱 1번만 호출되는 것을 보장
 	 * - 주로 불변, 필수 의존관계에 사용 
 	 * */
-	@Autowired
-	public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+	/*public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
 		super();
-		System.out.println("call constructor");
 		this.memberRepository = memberRepository;
 		this.discountPolicy = discountPolicy;
-	}
+	}*/
 
 	@Override
 	public Order createOrder(Long memberId, String itemName, int itemPrice) {
